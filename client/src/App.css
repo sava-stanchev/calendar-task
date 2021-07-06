@@ -4,6 +4,16 @@
   max-width: 400px;
 }
 
+.calendar .header {
+  background-color: lightblue;
+  text-align: center;
+  min-height: 2rem;
+  line-height: 2rem;
+  color: black;
+  font-weight: 700;
+  display: flex;
+}
+
 .calendar .day {
   position: relative;
   width: calc(100% / 7);
@@ -17,8 +27,18 @@
   text-align: center;
 }
 
-.calendar .day div.selected {
-  background-color: var(--red);
-  color: var(--white);
-  font-weight: bold;
+.calendar .body {
+  border: 1px solid blue;
+}
+
+.calendar .header .previous {
+  flex: 1;
+  text-align: left;
+  margin-left: 1rem;
+}
+
+.calendar .header .next {
+  flex: 1;
+  text-align: right;
+  margin-right: 1rem;
 }

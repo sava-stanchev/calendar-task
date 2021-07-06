@@ -10,19 +10,32 @@ const MainPage = () => {
     setCalendar(buildCalendar(value));  
   }, [value])
 
+  const currMonthName = () => {
+    return value.format('MMMM');
+  }
+
+  const currYear = () => {
+    return value.format('YYYY');
+  }
+
   return(
     <div className="calendar">
-      {calendar.map((week) => (
-        <div>
-          {week.map((day) => (
-            <div className="day" onClick={() => setValue(day)}>
-              <div className={value.isSame(day, 'day') ? 'selected' : ''}>
-                {day.format("D").toString()}
+      <div className="header">
+        <div className="previous">{String.fromCharCode(171)}</div>
+        <div className="current">{currMonthName()} {currYear()}</div>
+        <div className="next">{String.fromCharCode(187)}</div>
+      </div>
+      <div className="body">
+        {calendar.map((week) => (
+          <div>
+            {week.map((day) => (
+              <div className="day" onClick={() => setValue(day)}>
+                  {day.format("D").toString()}
               </div>
-            </div>
-          ))}
-        </div>
-      ))}
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   )
 };
