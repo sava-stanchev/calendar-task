@@ -7,8 +7,8 @@
 .calendar .header {
   background-color: lightblue;
   text-align: center;
-  min-height: 2rem;
-  line-height: 2rem;
+  min-height: 3rem;
+  line-height: 3rem;
   color: black;
   font-weight: 700;
   display: flex;
@@ -17,7 +17,7 @@
 .calendar .day {
   position: relative;
   width: calc(100% / 7);
-  height: 44px;
+  height: 84px;
   display: inline-block;
   background-color: white;
   padding: 0;
@@ -41,7 +41,6 @@
   height: 44px;
   line-height: 44px;
   text-align: center;
-  text-transform: uppercase;
   color: black;
   font-weight: 400;
 }
@@ -51,7 +50,7 @@
 }
 
 .calendar .body {
-  border: 1px solid blue;
+  border: 2px solid lightblue;
 }
 
 .calendar .header .previous {
@@ -64,4 +63,8 @@
   flex: 1;
   text-align: right;
   margin-right: 1rem;
+}
+
+.no-data {
+  background-color: gray;
 }

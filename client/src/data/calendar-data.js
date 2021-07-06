@@ -1,4 +1,4 @@
-export const CalendarData = [
+export const calendarData = [
   {
     "date": "2021-06-11",
     "status": "bookable",
