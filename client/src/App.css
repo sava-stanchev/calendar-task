@@ -16,3 +16,9 @@
   z-index: 1;
   text-align: center;
 }
+
+.calendar .day div.selected {
+  background-color: var(--red);
+  color: var(--white);
+  font-weight: bold;
+}
