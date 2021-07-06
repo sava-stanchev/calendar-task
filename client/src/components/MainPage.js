@@ -14,11 +14,11 @@ const MainPage = () => {
   }
 
   return(
-    <div>
+    <div className="calendar">
       {calendar.map((week) => (
         <div>
           {week.map((day) => (
-            <div>
+            <div className="day">
               {day.format("D").toString()}
             </div>
           ))}
