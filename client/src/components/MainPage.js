@@ -15,11 +15,16 @@ const MainPage = () => {
     <div className="calendar">
       <CalendarHeader value={value} setValue={setValue}/>
       <div className="body">
-        {calendar.map((week) => (
-          <div>
-            {week.map((day) => (
-              <div className="day" onClick={() => setValue(day)}>
-                  {day.format("D").toString()}
+        <div className="day-names">
+          {['s', 'm', 't', 'w', 't', 'f', 's'].map((d, dni) => (
+              <div key={dni} className="week">{d}</div>
+          ))}
+        </div>
+        {calendar.map((week, wi) => (
+          <div key={wi}>
+            {week.map((day, di) => (
+              <div key={di} className="day" onClick={() => setValue(day)}>
+                {day.format("D").toString()}
               </div>
             ))}
           </div>

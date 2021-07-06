@@ -17,9 +17,13 @@ export const CalendarHeader = ({value, setValue}) => {
 
   return (
     <div className="header">
-      <div className="previous" onClick={() => setValue(prevMonth())}>{String.fromCharCode(171)}</div>
+      <div className="previous" onClick={() => setValue(prevMonth())}>
+        {String.fromCharCode(171)}
+      </div>
       <div className="current">{currMonthName()} {currYear()}</div>
-      <div className="next" onClick={() => setValue(nextMonth())}>{String.fromCharCode(187)}</div>
-  </div>
-  )
+      <div className="next" onClick={() => setValue(nextMonth())}>
+        {String.fromCharCode(187)}
+      </div>
+    </div>
+  );
 }

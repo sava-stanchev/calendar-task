@@ -27,6 +27,29 @@
   text-align: center;
 }
 
+.calendar .day-names {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.calendar .week {
+  background-color: white;
+  width: calc(100% / 7);
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+  font-weight: 400;
+}
+
+.calendar .week div {
+  width: 100%;
+}
+
 .calendar .body {
   border: 1px solid blue;
 }
