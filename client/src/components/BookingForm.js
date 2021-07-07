@@ -64,17 +64,22 @@ export const BookingForm = ({calendarInfo, setCalendarInfo}) => {
     e.preventDefault();
 
     if (newBooking.from > newBooking.to && newBooking.to < newBooking.from) {
-      setAlertMsg('Please check and make sure that the booking period is valid and available!');
+      setAlertMsg('The booking period is invalid! Make sure that the dates are chronological.');
       setIsOpen(true);
     } else {
       const validFromDateIndex = calendarInfo.findIndex((el) => el.date === newBooking.from);
       const validToDateIndex = calendarInfo.findIndex((el) => el.date === newBooking.to);
-  
       const inBetweenIndexes = range(validFromDateIndex, validToDateIndex);
-      const newCalendarInfo = calendarInfo
-      .map((el, i) => inBetweenIndexes.includes(i) ? el = {...el, status: 'booked'} : el);
-  
-      setCalendarInfo(newCalendarInfo);
+      const checkInterval = calendarInfo.some((el, i) => inBetweenIndexes.includes(i) && el.status === 'booked');
+      if (checkInterval) {
+        setAlertMsg('The period that you are requesting is not fully available for booking!');
+        setIsOpen(true); 
+      } else {
+        const newCalendarInfo = calendarInfo
+        .map((el, i) => inBetweenIndexes.includes(i) ? el = {...el, status: 'booked'} : el);
+    
+        setCalendarInfo(newCalendarInfo);
+      }
     }
   };
 
