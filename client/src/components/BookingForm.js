@@ -38,12 +38,20 @@ export const BookingForm = ({calendarInfo, setCalendarInfo}) => {
     }
 
     if (name === "from") {
-      const validFromDate = calendarInfo.filter((el) => el.date === value)[0].status === 'bookable';
+      const checkDate = calendarInfo.filter((el) => el.date === value)[0];
+      if (!checkDate) {
+        return;
+      }
+      const validFromDate = checkDate.status === 'bookable';
       setFromDateError({...fromDateError, validFromDate});
     }
 
     if (name === "to") {
-      const validToDate = calendarInfo.filter((el) => el.date === value)[0].status === 'bookable';
+      const checkDate = calendarInfo.filter((el) => el.date === value)[0];
+      if (!checkDate) {
+        return;
+      }
+      const validToDate = checkDate.status === 'bookable';
       setToDateError({...toDateError, validToDate});
     }
   };
@@ -69,20 +77,30 @@ export const BookingForm = ({calendarInfo, setCalendarInfo}) => {
       onChange={e => createBooking('name', e.target.value)}>
         <label>Name:</label>
         <input type="text"/>
+        <p className ="booking-warning" style={nameError.validName ? {color: 'white'} : {color: 'red'}}>
+          * Valid name
+        </p>
       </div>
       <div className="input-group" name="from" value={newBooking.from}
       onChange={e => createBooking('from', e.target.value)}>
         <label>From:</label>
         <input type="date"/>
+        <p className ="booking-warning" style={fromDateError.validFromDate ? {color: 'white'} : {color: 'red'}}>
+          * Valid "from" date
+        </p>
       </div>
       <div className="input-group" name="to" value={newBooking.to}
       onChange={e => createBooking('to', e.target.value)}>
         <label>To:</label>
         <input type="date"/>
+        <p className ="booking-warning" style={toDateError.validToDate ? {color: 'white'} : {color: 'red'}}>
+          * Valid "to" date
+        </p>
       </div>
       <div className="input-group">
         <button
         className="btn"
+        disabled={nameError.validName && fromDateError.validFromDate && toDateError.validToDate ? false : true}
         onClick={(e) => updateCalendarInfo(e)}
         >Book!</button>
       </div>

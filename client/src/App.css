@@ -207,3 +207,9 @@ body {
   width: 85px;
   color: #1762A7;
 }
+
+.booking-warning {
+  font-size: 0.85rem;
+  margin-bottom: -1rem;
+  margin-top: 0.5rem;
+}
