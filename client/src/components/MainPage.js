@@ -15,34 +15,53 @@ const MainPage = () => {
   }, [value])
 
   return(
-    <div className="calendar">
-      <CalendarHeader value={value} setValue={setValue}/>
-      <div className="body">
-        <div className="day-names">
-          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d, dayNameI) => (
-              <div key={dayNameI} className="week">{d}</div>
-          ))}
-        </div>
-        {calendar.map((week, wi) => (
-          <div key={wi}>
-            {week.map((day, di) => (
-              <div key={di} className="day">
-                {calendarInfo.some((el) => el.date === day.format('').slice(0, 10)) ? 
-                  <div>
-                    {day.format('D').toString()}
-                    <p>&euro; {calendarInfo.filter((el) => el.date === day.format('').slice(0, 10))[0].price}</p>
-                  </div>
-                :
-                  <div className="no-data">
-                    {day.format('D').toString()}
-                  </div>
-                }
-              </div>
+    <section className="main-section">
+      <div className="calendar">
+        <CalendarHeader value={value} setValue={setValue}/>
+        <div className="the-body">
+          <div className="day-names">
+            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d, dayNameI) => (
+                <div key={dayNameI} className="week">{d}</div>
             ))}
           </div>
-        ))}
+          {calendar.map((week, wi) => (
+            <div key={wi}>
+              {week.map((day, di) => (
+                <div key={di} className="day">
+                  {calendarInfo.some((el) => el.date === day.format('').slice(0, 10)) ? 
+                    <div>
+                      {day.format('D').toString()}
+                      <div className="price">&euro; {calendarInfo.filter((el) => el.date === day.format('').slice(0, 10))[0].price}</div>
+                    </div>
+                  :
+                    <div className="no-data">
+                      {day.format('D').toString()}
+                    </div>
+                  }
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+      <form className="booking-form">
+        <div className="input-group">
+          <label>Name:</label>
+          <input type="text"/>
+        </div>
+        <div className="input-group">
+          <label>From:</label>
+          <input type="date"/>
+        </div>
+        <div className="input-group">
+          <label>To:</label>
+          <input type="date"/>
+        </div>
+        <div className="input-group">
+          <button disabled={true} className="btn">Book!</button>
+        </div>
+      </form>
+    </section>
   )
 };
 

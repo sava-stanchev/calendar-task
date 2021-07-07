@@ -1,3 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #2F303A;
+  font-family: Poppins, sans-serif;
+  font-size: 1.2rem;
+  min-height: 100vh;
+}
+
+.full-height-grow {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.main-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+@media (max-width: 900px) {
+  .main-section {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .booking-form {
+    width: 70vw;
+    max-width: inherit;
+    margin: 2rem 0;
+  }
+}
+
+.booking-form {
+  background-color: #202027;
+  width: 40vw;
+  max-width: 40%;
+  padding: 2rem 4rem;
+  border-radius: 20px;
+}
+
+.input-group {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group:last-child {
+  margin-bottom: 0;
+}
+
+.input-group label {
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+.input-group input {
+  outline: none;
+  background: none;
+  border: 1px solid #374669;
+  font-size: 1em;
+  padding: .5em;
+  color: inherit;
+  border-radius: 5px;
+}
+
+.input-group input:focus {
+  border-color: #596da0;
+}
+
+.btn {
+  color: white;
+  background-color: #1762A7;
+  padding: .75rem 1.5rem;
+  border-radius: .5rem;
+  text-decoration: none;
+  font-size: .9rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #2180d8;
+}
+
+.btn:focus {
+  background-color: #2796ff;
+}
+
 .calendar {
   box-sizing: border-box;
   font-size: 1rem;
@@ -5,11 +108,11 @@
 }
 
 .calendar .header {
-  background-color: lightblue;
+  background-color: #1762A7;
   text-align: center;
   min-height: 3rem;
   line-height: 3rem;
-  color: black;
+  color: white;
   font-weight: 700;
   display: flex;
 }
@@ -20,8 +123,7 @@
   height: 84px;
   display: inline-block;
   background-color: white;
-  padding: 0;
-  margin: 0;
+  vertical-align: top;
   box-sizing: border-box;
   z-index: 1;
   text-align: center;
@@ -49,8 +151,8 @@
   width: 100%;
 }
 
-.calendar .body {
-  border: 2px solid lightblue;
+.calendar .the-body {
+  border: 2px solid #1762A7;
 }
 
 .calendar .header .previous {
@@ -67,4 +169,13 @@
 
 .no-data {
   background-color: gray;
+  padding-bottom: 2.5rem;
+  min-width: 57px;
+}
+
+.price {
+  margin-top: 0.2rem;
+  width: 60px;
+  overflow: hidden;
+  white-space: nowrap;
 }
