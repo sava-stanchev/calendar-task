@@ -21,7 +21,7 @@ const MainPage = () => {
         <div className="the-body">
           <div className="day-names">
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d, dayNameI) => (
-                <div key={dayNameI} className="week">{d}</div>
+              <div key={dayNameI} className="week">{d}</div>
             ))}
           </div>
           {calendar.map((week, wi) => (
@@ -31,7 +31,25 @@ const MainPage = () => {
                   {calendarInfo.some((el) => el.date === day.format('').slice(0, 10)) ? 
                     <div>
                       {day.format('D').toString()}
-                      <div className="price">&euro; {calendarInfo.filter((el) => el.date === day.format('').slice(0, 10))[0].price}</div>
+                        {calendarInfo
+                        .filter((el) => el.date === day.format('').slice(0, 10))[0].status === 'bookable' ?
+                        <div className="bookable">
+                          Bookable
+                        </div>
+                        :
+                          calendarInfo
+                          .filter((el) => el.date === day.format('').slice(0, 10))[0].status === 'blocked' ?
+                          <div className="blocked">
+                            Blocked
+                          </div>
+                          :
+                          <div className="Booked">
+                            Booked
+                          </div>
+                        }
+                      <div className="price">
+                        &euro; {calendarInfo.filter((el) => el.date === day.format('').slice(0, 10))[0].price.toFixed(2)}
+                      </div>
                     </div>
                   :
                     <div className="no-data">
