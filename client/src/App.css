@@ -213,3 +213,25 @@ body {
   margin-bottom: -1rem;
   margin-top: 0.5rem;
 }
+
+.modal-styles {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background-color: #202027;
+  padding: 50px;
+  padding-top: 27px;
+  z-index: 1000;
+}
+
+.overlay-styles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}

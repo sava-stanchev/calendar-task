@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {range} from "../helpers/range-array";
+import {AlertModal} from "./AlertModal";
 
 const initialState = {
   name: '',
@@ -24,6 +25,8 @@ export const BookingForm = ({calendarInfo, setCalendarInfo}) => {
   const [nameError, setNameError] = useState(nameVerificationError);
   const [fromDateError, setFromDateError] = useState(fromDateVerificationError);
   const [toDateError, setToDateError] = useState(toDateVerificationError);
+  const [alertMsg, setAlertMsg] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {}, [newBooking]);
 
@@ -59,17 +62,25 @@ export const BookingForm = ({calendarInfo, setCalendarInfo}) => {
 
   const updateCalendarInfo = (e) => {
     e.preventDefault();
-    const validFromDateIndex = calendarInfo.findIndex((el) => el.date === newBooking.from);
-    const validToDateIndex = calendarInfo.findIndex((el) => el.date === newBooking.to);
-    const inBetweenIndexes = range(validFromDateIndex, validToDateIndex);
-    const newCalendarInfo = calendarInfo
-    .map((el, i) => inBetweenIndexes.includes(i) ? el = {...el, status: 'booked'} : el);
 
-    setCalendarInfo(newCalendarInfo);
+    if (newBooking.from > newBooking.to && newBooking.to < newBooking.from) {
+      setAlertMsg('Please check and make sure that the booking period is valid and available!');
+      setIsOpen(true);
+    } else {
+      const validFromDateIndex = calendarInfo.findIndex((el) => el.date === newBooking.from);
+      const validToDateIndex = calendarInfo.findIndex((el) => el.date === newBooking.to);
+  
+      const inBetweenIndexes = range(validFromDateIndex, validToDateIndex);
+      const newCalendarInfo = calendarInfo
+      .map((el, i) => inBetweenIndexes.includes(i) ? el = {...el, status: 'booked'} : el);
+  
+      setCalendarInfo(newCalendarInfo);
+    }
   };
 
   return (
     <form className="booking-form">
+      <AlertModal open={isOpen} onClose={() => setIsOpen(false)} alertMsg={alertMsg} />
       <div className="input-group" name="name" value={newBooking.name}
       onChange={e => createBooking('name', e.target.value)}>
         <label>Name:</label>
@@ -83,7 +94,7 @@ export const BookingForm = ({calendarInfo, setCalendarInfo}) => {
         <label>From:</label>
         <input type="date"/>
         <p className ="booking-warning" style={fromDateError.validFromDate ? {color: 'white'} : {color: 'red'}}>
-          * Valid "from" date
+          * Bookable "from" date
         </p>
       </div>
       <div className="input-group" name="to" value={newBooking.to}
@@ -91,7 +102,7 @@ export const BookingForm = ({calendarInfo, setCalendarInfo}) => {
         <label>To:</label>
         <input type="date"/>
         <p className ="booking-warning" style={toDateError.validToDate ? {color: 'white'} : {color: 'red'}}>
-          * Valid "to" date
+          * Bookable "to" date
         </p>
       </div>
       <div className="input-group">
