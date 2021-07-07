@@ -9,7 +9,7 @@ const MainPage = () => {
   const [value, setValue] = useState(moment());
   const [calendar, setCalendar] = useState([]);
   const [calendarInfo, setCalendarInfo] = useState(calendarData);
-  console.log(calendarInfo);
+
   useEffect(() => {
     setCalendar(buildCalendar(value));  
   }, [value])

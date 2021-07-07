@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {range} from "../helpers/range-array";
 
 const initialState = {
   name: '',
@@ -55,10 +56,6 @@ export const BookingForm = ({calendarInfo, setCalendarInfo}) => {
       setToDateError({...toDateError, validToDate});
     }
   };
-
-  const range = (start, end) => {
-    return Array(end - start + 1).fill().map((_, idx) => start + idx);
-  }
 
   const updateCalendarInfo = (e) => {
     e.preventDefault();
