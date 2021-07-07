@@ -43,7 +43,7 @@ const MainPage = () => {
                             Blocked
                           </div>
                           :
-                          <div className="Booked">
+                          <div className="booked">
                             Booked
                           </div>
                         }

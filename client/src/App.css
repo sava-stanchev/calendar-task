@@ -39,16 +39,16 @@ body {
   }
 
   .booking-form {
-    width: 90vw;
-    max-width: inherit;
+    width: 80vw;
+    max-width: 80%;
     margin: 2rem 0;
   }
 }
 
 .booking-form {
   background-color: #202027;
-  width: 40vw;
-  max-width: 60%;
+  width: 48vw;
+  max-width: 80%;
   padding: 2rem 4rem;
   border-radius: 20px;
 }
@@ -194,18 +194,21 @@ body {
   min-width: 85px;
   width: 85px;
   color: green;
+  font-weight: bold;
 }
 
 .blocked {
   min-width: 85px;
   width: 85px;
   color: darkred;
+  font-weight: bold;
 }
 
 .booked {
   min-width: 85px;
   width: 85px;
   color: #1762A7;
+  font-weight: bold;
 }
 
 .booking-warning {

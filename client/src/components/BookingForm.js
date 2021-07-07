@@ -63,22 +63,27 @@ export const BookingForm = ({calendarInfo, setCalendarInfo}) => {
   const updateCalendarInfo = (e) => {
     e.preventDefault();
 
-    if (newBooking.from > newBooking.to && newBooking.to < newBooking.from) {
-      setAlertMsg('The booking period is invalid! Make sure that the dates are chronological.');
+    if (!fromDateError.validFromDate || !toDateError.validToDate) {
+      setAlertMsg('You have chosen unavailable dates!');
       setIsOpen(true);
     } else {
-      const validFromDateIndex = calendarInfo.findIndex((el) => el.date === newBooking.from);
-      const validToDateIndex = calendarInfo.findIndex((el) => el.date === newBooking.to);
-      const inBetweenIndexes = range(validFromDateIndex, validToDateIndex);
-      const checkInterval = calendarInfo.some((el, i) => inBetweenIndexes.includes(i) && el.status === 'booked');
-      if (checkInterval) {
-        setAlertMsg('The period that you are requesting is not fully available for booking!');
-        setIsOpen(true); 
+      if (newBooking.from > newBooking.to && newBooking.to < newBooking.from) {
+        setAlertMsg('Invalid booking period!');
+        setIsOpen(true);
       } else {
-        const newCalendarInfo = calendarInfo
-        .map((el, i) => inBetweenIndexes.includes(i) ? el = {...el, status: 'booked'} : el);
-    
-        setCalendarInfo(newCalendarInfo);
+        const validFromDateIndex = calendarInfo.findIndex((el) => el.date === newBooking.from);
+        const validToDateIndex = calendarInfo.findIndex((el) => el.date === newBooking.to);
+        const inBetweenIndexes = range(validFromDateIndex, validToDateIndex);
+        const checkInterval = calendarInfo.some((el, i) => inBetweenIndexes.includes(i) && el.status === 'booked');
+        if (checkInterval) {
+          setAlertMsg('Unavailable booking period!');
+          setIsOpen(true); 
+        } else {
+          const newCalendarInfo = calendarInfo
+          .map((el, i) => inBetweenIndexes.includes(i) ? el = {...el, status: 'booked'} : el);
+      
+          setCalendarInfo(newCalendarInfo);
+        }
       }
     }
   };
@@ -98,22 +103,15 @@ export const BookingForm = ({calendarInfo, setCalendarInfo}) => {
       onChange={e => createBooking('from', e.target.value)}>
         <label>From:</label>
         <input type="date"/>
-        <p className ="booking-warning" style={fromDateError.validFromDate ? {color: 'white'} : {color: 'red'}}>
-          * Bookable "from" date
-        </p>
       </div>
       <div className="input-group" name="to" value={newBooking.to}
       onChange={e => createBooking('to', e.target.value)}>
         <label>To:</label>
         <input type="date"/>
-        <p className ="booking-warning" style={toDateError.validToDate ? {color: 'white'} : {color: 'red'}}>
-          * Bookable "to" date
-        </p>
       </div>
       <div className="input-group">
         <button
         className="btn"
-        disabled={nameError.validName && fromDateError.validFromDate && toDateError.validToDate ? false : true}
         onClick={(e) => updateCalendarInfo(e)}
         >Book!</button>
       </div>
